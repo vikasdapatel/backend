@@ -1,0 +1,15 @@
+{
+    "id": 1,
+    "name": "True Value",
+    "emailId": "truevalue@gmail.com",
+    "phone": "9873546287",
+    "mobile": "9873546287",
+    "createdDate": "22-may-2020",
+    "gstno": "GSTN12345678",
+    "sites": [
+    ],
+    "panNo": "",
+    "portRegNo": "",
+    "registrationNo": "",
+    "constitution": ""
+}
