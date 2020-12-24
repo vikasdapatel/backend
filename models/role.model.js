@@ -7,11 +7,11 @@ const sequelize = new Sequelize('sqlite::memory');
 module.exports = (sequelize) => {
 	sequelize.define("Role", {
         id: {
-          type: Sequelize.INTEGER,
+          type: DataTypes.INTEGER,
           primaryKey: true
         },
         name: {
-          type: Sequelize.STRING
+          type: DataTypes.INTEGER
         }
       });
 };

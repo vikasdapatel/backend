@@ -2,13 +2,35 @@ const { Sequelize } = require('sequelize');
 const { applyExtraSetup } = require('./extra-setup');
 
 
-const DBNAME = process.env.JINIHANDLER_DB_NAME || 'jinisha_management'
-
-// Option 2: Passing parameters separately (other dialects)
-const sequelize = new Sequelize(DBNAME, 'root', '', {
+let development_config = {
+  DBNAME: process.env.JINIHANDLER_DB_NAME || 'jinisha-db',
+  username: 'root',
+  password: '',
   host: 'localhost',
-  dialect: 'mysql'
+  diselect: 'mysql'
+
+}
+
+let production_config = {
+  DBNAME: process.env.JINIHANDLER_DB_NAME || 'jinisha-db',
+  username: 'admin',
+  password: 'Jinisha19',
+  host: 'jinisha-db.cwrhrylalclu.us-east-2.rds.amazonaws.com',
+  diselect: 'mysql'
+}
+const config = process.env.NODE_ENV == 'development' ? development_config : production_config;
+// Option 2: Passing parameters separately (other dialects)
+const sequelize = new Sequelize(config.DBNAME, config.username, config.password, {
+  host: config.host,
+  dialect: config.diselect
 });
+
+//development
+// host = "jinisha-db.cwrhrylalclu.us-east-2.rds.amazonaws.com"
+// DBNAME = "jinisha-db"
+// usrnm = "admin"
+// pswd = "Jinisha19"
+
  
 sequelize
   .authenticate()
