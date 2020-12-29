@@ -1,115 +1,116 @@
 const visitorsModel = require("./visitors.model");
 
 function applyExtraSetup(sequelize) {
-	const { Clients, Sites, Invoice, InvoiceTable, InvoiceDefault, Users,
-		 Visitors, Entry,
-		 BuildingBlocks,
-		 Flats,
-		 Invitation,
-		 Role,
-		 Employee
+	const { clients, sites, invoice, invoiceTable, invoiceDefault, users,
+		 visitors, entry,
+		 buildingBlocks,
+		 invitation,
+		 roles,
+		 employee
 		 } = sequelize.models;
 
+		 initial();
+
 	//HasMany
-	Clients.hasMany(Sites);
-	Clients.hasMany(Invoice);
+	clients.hasMany(sites);
+	clients.hasMany(invoice);
 
 	//invoice
-	Invoice.hasMany(InvoiceTable);
+	invoice.hasMany(invoiceTable);
 	//user
-	Users.hasMany(InvoiceDefault);
-	Users.hasMany(Visitors);
-	Users.hasMany(Entry);
-	Users.hasMany(Invitation);
+	users.hasMany(invoiceDefault);
+	users.hasMany(visitors);
+	users.hasMany(entry);
+	users.hasMany(invitation);
 
 	//site
-	Sites.hasMany(Visitors);
-	Sites.hasMany(Users);
-	Sites.hasMany(BuildingBlocks);
+	sites.hasMany(visitors);
+	sites.hasMany(users);
+	sites.hasMany(buildingBlocks);
 
 	//visitors
-	Visitors.hasMany(Entry);
-	Visitors.hasMany(Invitation);
+	visitors.hasMany(entry);
+	visitors.hasMany(invitation);
 
 	//building Blocks
-	BuildingBlocks.hasMany(Users);
+	buildingBlocks.hasMany(users);
 	
 	
 
 	//belongsTo
-	Sites.belongsTo(Clients);
-	Invoice.belongsTo(Clients);
-	InvoiceTable.belongsTo(Invoice);
-	InvoiceDefault.belongsTo(Users);
-	Visitors.belongsTo(Users);
-	Visitors.belongsTo(Sites);
-	Entry.belongsTo(Visitors);
-	Entry.belongsTo(Users);
-	BuildingBlocks.belongsTo(Sites);
-	Users.belongsTo(BuildingBlocks);
-	Users.belongsTo(Sites);
+	sites.belongsTo(clients);
+	invoice.belongsTo(clients);
+	invoiceTable.belongsTo(invoice);
+	invoiceDefault.belongsTo(users);
+	visitors.belongsTo(users);
+	visitors.belongsTo(sites);
+	entry.belongsTo(visitors);
+	entry.belongsTo(users);
+	buildingBlocks.belongsTo(sites);
+	users.belongsTo(buildingBlocks);
+	users.belongsTo(sites);
 
-	Invitation.belongsTo(Users);
-	Invitation.belongsTo(Visitors);
+	invitation.belongsTo(users);
+	invitation.belongsTo(visitors);
 	//Profile.belongsToMany(User, { through: User_Profile });
 	//Inspection.hasMany(Inspection);
 	//instrument.belongsTo(orchestra);
 
-	Role.belongsToMany(Users, {
+	roles.belongsToMany(users, {
 		through: "user_roles",
 		foreignKey: "roleId",
 		otherKey: "userId"
 	  });
-	  Users.belongsToMany(Role, {
+	  users.belongsToMany(roles, {
 		through: "user_roles",
 		foreignKey: "userId",
 		otherKey: "roleId"
 	  });
 
-	  Role.belongsToMany(Employee, {
+	  roles.belongsToMany(employee, {
 		through: "employee_roles",
 		foreignKey: "roleId",
 		otherKey: "employeeId"
 	  });
-	  Employee.belongsToMany(Role, {
+	  employee.belongsToMany(roles, {
 		through: "employee_roles",
 		foreignKey: "employeeId",
 		otherKey: "roleId"
 	  });
 
 	  function initial() {
-		Role.create({
+		roles.create({
 		  id: 1,
 		  name: "superAdmin"
 		});
 	   
-		Role.create({
+		roles.create({
 		  id: 2,
 		  name: "admin"
 		});
 	   
-		Role.create({
+		roles.create({
 		  id: 3,
 		  name: "webUser"
 		});
 
-		Role.create({
+		roles.create({
 			id: 4,
 			name: "mobileUser"
 		  });
 
-		  Role.create({
+		  roles.create({
 			id: 5,
 			name: "mobileUserAdmin"
 		  });
 
-		  Role.create({
+		  roles.create({
 			id: 6,
 			name: "Guard"
 		  });
 	  }
 	  
-	  initial();
+	  
 }
 
 module.exports = { applyExtraSetup };
