@@ -16,7 +16,7 @@ router.get('/api/invoice-settings', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.InvoiceDefault.findAll({ 
+    let result = await models.invoiceDefault.findAll({ 
       where: {
         [Op.or]: [
           {
@@ -45,7 +45,7 @@ router.post('/api/invoice-settings', async function (req, res, next) {
   let todo = req.body
   console.log(todo);
   try {
-    let result = await models.InvoiceDefault.create(todo);
+    let result = await models.invoiceDefault.create(todo);
     if (result && result.dataValues) {
         utils.sendData(res, result.dataValues)
     } else {
@@ -64,7 +64,7 @@ router.put('/api/invoice-settings/:id', async function (req, res, next) {
   let todo = req.body
   delete todo._id
   try {
-    let result = await models.InvoiceDefault.update(todo, {
+    let result = await models.invoiceDefault.update(todo, {
       where: {
         id: req.params.id
       }

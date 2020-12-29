@@ -21,7 +21,7 @@ router.get('/api/user', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Users.findAndCountAll({ 
+    let result = await models.users.findAndCountAll({ 
       order: [
         ['createdAt', 'DESC'],
       ],
@@ -74,7 +74,7 @@ router.get('/api/user/:userId', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Users.findAll({ 
+    let result = await models.users.findAll({ 
       where: {
         [Op.or]: [
           {
@@ -104,7 +104,7 @@ router.post('/api/user', async function (req, res, next) {
   let todo = req.body
   console.log(todo);
   try {
-    let result = await models.Users.create(todo);
+    let result = await models.users.create(todo);
     if (result && result.dataValues) {
         utils.sendData(res, result.dataValues)
     } else {
@@ -123,7 +123,7 @@ router.put('/api/user/:id', async function (req, res, next) {
   let todo = req.body
   delete todo._id
   try {
-    let result = await models.Users.update(todo, {
+    let result = await models.users.update(todo, {
       where: {
         id: req.params.id
       }
@@ -144,7 +144,7 @@ router.put('/api/user/:id', async function (req, res, next) {
 router.delete('/api/user/:id', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.Users.destroy({
+    let result = await models.users.destroy({
       where: {
         id: req.params.id
       },

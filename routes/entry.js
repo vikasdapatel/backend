@@ -22,7 +22,7 @@ router.get('/api/entry', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Entry.findAndCountAll({ 
+    let result = await models.entry.findAndCountAll({ 
       order: [
         ['createdAt', 'DESC'],
       ],
@@ -71,7 +71,7 @@ router.get('/api/entry/:entryId', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Entry.findAll({ 
+    let result = await models.entry.findAll({ 
       where: {
         [Op.or]: [
           {
@@ -101,7 +101,7 @@ router.post('/api/entry', async function (req, res, next) {
   todo['entry_done_by'] = +mobileUserLogin.id;
 
   try {
-    let result = await models.Entry.create(todo);
+    let result = await models.entry.create(todo);
     if (result && result.dataValues) {
         utils.sendData(res, result.dataValues)
     } else {
@@ -121,7 +121,7 @@ router.put('/api/entry', async function (req, res, next) {
   todo['check_out_by'] = +mobileUserLogin.id;
   delete todo._id
   try {
-    let result = await models.Entry.update(todo, {
+    let result = await models.entry.update(todo, {
       where: {
         id: req.params.id
       }
@@ -155,7 +155,7 @@ router.put('/api/entry/checkin/:id', async function (req, res, next) {
   
     delete todo._id
     try {
-      let result = await models.Entry.update(todo, {
+      let result = await models.entry.update(todo, {
         where: {
           id: req.params.id
         }
@@ -176,7 +176,7 @@ router.put('/api/entry/checkin/:id', async function (req, res, next) {
 router.delete('/api/entry/:id', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.Entry.destroy({
+    let result = await models.entry.destroy({
       where: {
         id: req.params.id
       },

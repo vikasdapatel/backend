@@ -15,7 +15,7 @@ router.get('/api/employee', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Employee.findAndCountAll({ 
+    let result = await models.employee.findAndCountAll({ 
       order: [
         ['createdAt', 'DESC'],
       ],
@@ -55,7 +55,7 @@ router.get('/api/employee/:employeeId', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Employee.findAll({ 
+    let result = await models.employee.findAll({ 
       where: {
         [Op.or]: [
           {
@@ -83,7 +83,7 @@ router.post('/api/employee', async function (req, res, next) {
   res.type('application/json')
   let todo = req.body
   try {
-     models.Employee.create(todo).then(employee => {
+     models.employee.create(todo).then(employee => {
       if (req.body.roles) {
         models.Role.findAll({
           where: {
@@ -125,7 +125,7 @@ router.put('/api/employee/:id', async function (req, res, next) {
   let todo = req.body
   delete todo._id
   try {
-    let result = await models.Employee.update(todo, {
+    let result = await models.employee.update(todo, {
       where: {
         id: req.params.id
       }
@@ -146,7 +146,7 @@ router.put('/api/employee/:id', async function (req, res, next) {
 router.delete('/api/employee/:id', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.Employee.destroy({
+    let result = await models.employee.destroy({
       where: {
         id: req.params.id
       },

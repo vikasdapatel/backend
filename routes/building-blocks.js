@@ -23,7 +23,7 @@ const status = ['INSIDE', 'OUTSIDE']
 router.get('/api/building-blocks', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.BuildingBlocks.findAndCountAll({
+    let result = await models.buildingBlocks.findAndCountAll({
       where: {
         SiteSiteId: +mobileUserLogin.siteId
       }
@@ -49,7 +49,7 @@ router.get('/api/building-blocks/:siteId', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.BuildingBlocks.findAll({ 
+    let result = await models.buildingBlocks.findAll({ 
       where: {
         [Op.or]: [
           {
@@ -80,7 +80,7 @@ router.post('/api/building-blocks', async function (req, res, next) {
   todo['flats'] = todo.flats.toString();
 
   try {
-    let result = await models.BuildingBlocks.create(todo);
+    let result = await models.buildingBlocks.create(todo);
     if (result && result.dataValues) {
         utils.sendData(res, result.dataValues)
     } else {
@@ -97,7 +97,7 @@ router.put('/api/building-blocks/:id', async function (req, res, next) {
     let todo = req.body
     delete todo._id
     try {
-      let result = await models.BuildingBlocks.update(todo, {
+      let result = await models.buildingBlocks.update(todo, {
         where: {
           id: req.params.id
         }
@@ -118,7 +118,7 @@ router.put('/api/building-blocks/:id', async function (req, res, next) {
 router.delete('/api/building-blocks/:id', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.BuildingBlocks.destroy({
+    let result = await models.buildingBlocks.destroy({
       where: {
         id: req.params.id
       },

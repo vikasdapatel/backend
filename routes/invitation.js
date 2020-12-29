@@ -21,7 +21,7 @@ const status = ['PENDING', 'APPROVED', 'REJECT']
 router.get('/api/invitation', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.Invitation.findAndCountAll({ 
+    let result = await models.invitation.findAndCountAll({ 
       order: [
         ['createdAt', 'DESC'],
       ],
@@ -57,7 +57,7 @@ router.get('/api/invitation/:inviationId', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Invitation.findAll({ 
+    let result = await models.invitation.findAll({ 
       where: {
         [Op.or]: [
           {
@@ -88,7 +88,7 @@ router.post('/api/invitation', async function (req, res, next) {
   todo['status'] = status[0];
 
   try {
-    let result = await models.Invitation.create(todo);
+    let result = await models.invitation.create(todo);
     if (result && result.dataValues) {
         utils.sendData(res, result.dataValues)
     } else {
@@ -108,7 +108,7 @@ router.put('/api/invitation', async function (req, res, next) {
   todo['check_out_by'] = +mobileUserLogin.id;
   delete todo._id
   try {
-    let result = await models.Invitation.update(todo, {
+    let result = await models.invitation.update(todo, {
       where: {
         id: req.params.id
       }
@@ -142,7 +142,7 @@ router.put('/api/invitation/checkin/:id', async function (req, res, next) {
   
     delete todo._id
     try {
-      let result = await models.Invitation.update(todo, {
+      let result = await models.invitation.update(todo, {
         where: {
           id: req.params.id
         }
@@ -163,7 +163,7 @@ router.put('/api/invitation/checkin/:id', async function (req, res, next) {
 router.delete('/api/invitation/:id', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.Invitation.destroy({
+    let result = await models.invitation.destroy({
       where: {
         id: req.params.id
       },

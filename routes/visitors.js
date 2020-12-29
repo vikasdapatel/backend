@@ -22,7 +22,7 @@ router.get('/api/visitors', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Visitors.findAndCountAll({ 
+    let result = await models.visitors.findAndCountAll({ 
       include: [{model: models.Entry, include: [
         {model: models.Users}
       ] }],
@@ -90,7 +90,7 @@ router.get('/api/visitors/:visitorId', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Visitors.findAll({ 
+    let result = await models.visitors.findAll({ 
       where: {
         [Op.or]: [
           {
@@ -122,10 +122,10 @@ router.post('/api/visitors', async function (req, res, next) {
   todo['status'] = status[1];
 
   try {
-    let result = await models.Visitors.create(todo);
+    let result = await models.visitors.create(todo);
     if (result && result.dataValues) {
       console.log(result);
-        //models.Visitors.increment('visitorId', { by: 1, where: { id: result.dataValues.id } })
+        //models.visitors.increment('visitorId', { by: 1, where: { id: result.dataValues.id } })
         utils.sendData(res, result.dataValues)
     } else {
       throw 'Error POSTing todo'
@@ -146,7 +146,7 @@ router.put('/api/visitors/checkout/:id', async function (req, res, next) {
 
   delete todo._id
   try {
-    let result = await models.Visitors.update(todo, {
+    let result = await models.visitors.update(todo, {
       where: {
         id: req.params.id
       }
@@ -171,7 +171,7 @@ router.put('/api/visitors/checkin/:id', async function (req, res, next) {
   
     delete todo._id
     try {
-      let result = await models.Visitors.update(todo, {
+      let result = await models.visitors.update(todo, {
         where: {
           id: req.params.id
         }
@@ -192,7 +192,7 @@ router.put('/api/visitors/checkin/:id', async function (req, res, next) {
 router.delete('/api/visitors/:id', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.Visitors.destroy({
+    let result = await models.visitors.destroy({
       where: {
         id: req.params.id
       },

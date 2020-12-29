@@ -8,19 +8,15 @@ module.exports = (sequelize) => {
 	sequelize.define("roles", {
         id: {
           type: DataTypes.INTEGER,
-          primaryKey: true
+          primaryKey: true,
+          unique: true
         },
         name: {
           type: DataTypes.STRING
-        },
-        createdAt: {
-            type: DataTypes.DATE
-        },
-        updatedAt: {
-            type: DataTypes.DATE
         }
       }, {
-        timestamps: true
+        timestamps: false,
+        freezeTableName: true
     });
 };
 

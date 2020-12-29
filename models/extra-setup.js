@@ -9,7 +9,7 @@ function applyExtraSetup(sequelize) {
 		 employee
 		 } = sequelize.models;
 
-		 initial();
+		 
 
 	//HasMany
 	clients.hasMany(sites);
@@ -55,6 +55,7 @@ function applyExtraSetup(sequelize) {
 	//Profile.belongsToMany(User, { through: User_Profile });
 	//Inspection.hasMany(Inspection);
 	//instrument.belongsTo(orchestra);
+	
 
 	roles.belongsToMany(users, {
 		through: "user_roles",
@@ -79,37 +80,32 @@ function applyExtraSetup(sequelize) {
 	  });
 
 	  function initial() {
-		roles.create({
-		  id: 1,
-		  name: "superAdmin"
-		});
-	   
-		roles.create({
-		  id: 2,
-		  name: "admin"
-		});
-	   
-		roles.create({
-		  id: 3,
-		  name: "webUser"
-		});
-
-		roles.create({
+		let ROLES = [{
+			id: 1,
+		  	name: "superAdmin"	
+		},{
+			id: 2,
+			name: "admin"
+		},{
+			id: 3,
+			name: "webUser"
+		}, {
 			id: 4,
 			name: "mobileUser"
-		  });
-
-		  roles.create({
+		},{
 			id: 5,
 			name: "mobileUserAdmin"
-		  });
-
-		  roles.create({
+		}, {
 			id: 6,
 			name: "Guard"
-		  });
+		}]
+		roles.bulkCreate(ROLES, {
+			returning: true,
+			updateOnDuplicate: ["id"]
+		});
 	  }
 	  
+	  initial();
 	  
 }
 

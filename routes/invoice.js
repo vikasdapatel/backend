@@ -15,7 +15,7 @@ router.get('/api/invoice', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Invoice.findAndCountAll({ 
+    let result = await models.invoice.findAndCountAll({ 
       order: [
         ['createdAt', 'DESC'],
       ],
@@ -59,7 +59,7 @@ router.get('/api/invoice/:invoiceId', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Invoice.findAll({ 
+    let result = await models.invoice.findAll({ 
       where: {
         [Op.or]: [
           {
@@ -88,7 +88,7 @@ router.post('/api/invoice', async function (req, res, next) {
   let todo = req.body
   console.log(todo);
   try {
-    let result = await models.Invoice.create(todo);
+    let result = await models.invoice.create(todo);
     if (result && result.dataValues) {
         utils.sendData(res, result.dataValues)
     } else {
@@ -107,7 +107,7 @@ router.put('/api/invoice/:id', async function (req, res, next) {
   let todo = req.body
   delete todo._id
   try {
-    let result = await models.Invoice.update(todo, {
+    let result = await models.invoice.update(todo, {
       where: {
         id: req.params.id
       }
@@ -128,7 +128,7 @@ router.put('/api/invoice/:id', async function (req, res, next) {
 router.delete('/api/invoice/:id', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.Invoice.destroy({
+    let result = await models.invoice.destroy({
       where: {
         id: req.params.id
       },

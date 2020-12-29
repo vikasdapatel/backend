@@ -2,9 +2,9 @@
 const config = require("../config/auth.config");
 
 const { models } = require('../models');
-const User = models.Users;
-const Role = models.Role;
-const Employee = models.Employee;
+const User = models.users;
+const Role = models.role;
+const Employee = models.employee;
 const { Op, Sequelize } = require("sequelize");
 const nodemailer=require('nodemailer');
 const utils = require('../routes/utils');

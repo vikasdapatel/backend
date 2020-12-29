@@ -15,7 +15,7 @@ router.get('/api/clients', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Clients.findAndCountAll({ 
+    let result = await models.clients.findAndCountAll({ 
       order: [
         ['createdAt', 'DESC'],
       ],
@@ -35,8 +35,8 @@ router.get('/api/clients', async function (req, res, next) {
         ]
         
       },
-      include: [{model: models.Sites }], 
-      as: "Clients"
+      include: [{model: models.sites }], 
+      as: "clients"
     });
     if (!result) {
       utils.sendData(res, [])
@@ -57,7 +57,7 @@ router.get('/api/clients/:clientId', async function (req, res, next) {
   res.type('application/json')
   console.log(models);
   try {
-    let result = await models.Clients.findAll({ 
+    let result = await models.clients.findAll({ 
       where: {
         [Op.or]: [
           {
@@ -66,8 +66,8 @@ router.get('/api/clients/:clientId', async function (req, res, next) {
         ]
         
       },
-      include: [{model: models.Sites }], 
-      as: "Clients"
+      include: [{model: models.sites }], 
+      as: "clients"
     });
     if (!result) {
       utils.sendData(res, [])
@@ -87,7 +87,7 @@ router.post('/api/clients', async function (req, res, next) {
   res.type('application/json')
   let todo = req.body
   try {
-    let result = await models.Clients.create(todo);
+    let result = await models.clients.create(todo);
     if (result && result.dataValues) {
       if(todo.Sites.length) {
         todo.Sites.forEach(site => {
@@ -108,7 +108,7 @@ router.post('/api/clients', async function (req, res, next) {
 
 async function setSites(site, result, res) {
   try {
-    let sites = await models.Sites.create(site);
+    let sites = await models.sites.create(site);
     if (sites && sites.dataValues) {
       result.dataValues['sites'] = sites.dataValues;
     }
@@ -127,7 +127,7 @@ router.put('/api/clients/:id', async function (req, res, next) {
   let todo = req.body
   delete todo._id
   try {
-    let result = await models.Clients.update(todo, {
+    let result = await models.clients.update(todo, {
       where: {
         id: req.params.id
       }
@@ -148,7 +148,7 @@ router.put('/api/clients/:id', async function (req, res, next) {
 router.delete('/api/clients/:id', async function (req, res, next) {
   res.type('application/json')
   try {
-    let result = await models.Clients.destroy({
+    let result = await models.clients.destroy({
       where: {
         id: req.params.id
       },
