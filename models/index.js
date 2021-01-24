@@ -18,7 +18,7 @@ let production_config = {
   DBNAME: process.env.JINIHANDLER_DB_NAME || 'jinisha-db',
   username: 'admin',
   password: 'Jinisha19',
-  host: 'jinisha-db.cwrhrylalclu.us-east-2.rds.amazonaws.com',
+  host: 'https://jinishasecurities.com',
   diselect: 'mysql'
 }
 const config = process.env.NODE_ENV == 'development' ? development_config : production_config;
