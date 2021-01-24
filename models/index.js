@@ -3,6 +3,7 @@ const { applyExtraSetup } = require('./extra-setup');
 
 var path = require('path');
 
+
 global.appRoot = path.resolve(__dirname);
 
 let development_config = {
@@ -10,7 +11,7 @@ let development_config = {
   username: 'root',
   password: '',
   host: 'localhost',
-  diselect: 'mysql'
+  diselect: process.env.DB_NAME || 'postgres'
 
 }
 
@@ -19,7 +20,7 @@ let production_config = {
   username: 'admin',
   password: 'Jinisha19',
   host: 'https://jinishasecurities.com',
-  diselect: 'mysql'
+  diselect: process.env.DB_NAME || 'postgres'
 }
 const config = process.env.NODE_ENV == 'development' ? development_config : production_config;
 // Option 2: Passing parameters separately (other dialects)
