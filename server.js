@@ -83,7 +83,7 @@ app.use(function(err, req, res, next) {
 
 
 // Get values from env vars or defaults where not provided
-let port = process.env.PORT || 3000
+let port = process.env.PROD_PORT || process.env.DEV_PORT || 3000
 
 // Start the server
 app.listen(port)

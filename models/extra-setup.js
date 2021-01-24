@@ -56,7 +56,7 @@ function applyExtraSetup(sequelize) {
 	//Inspection.hasMany(Inspection);
 	//instrument.belongsTo(orchestra);
 	
-
+	initial();
 	roles.belongsToMany(users, {
 		through: "user_roles",
 		foreignKey: "roleId",
@@ -105,7 +105,7 @@ function applyExtraSetup(sequelize) {
 		});
 	  }
 	  
-	  initial();
+	  
 	  
 }
 
