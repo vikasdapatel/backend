@@ -1,6 +1,9 @@
 const { Sequelize } = require('sequelize');
 const { applyExtraSetup } = require('./extra-setup');
 
+var path = require('path');
+
+global.appRoot = path.resolve(__dirname);
 
 let development_config = {
   DBNAME: process.env.JINIHANDLER_DB_NAME || 'jinisha-db',

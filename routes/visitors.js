@@ -117,8 +117,8 @@ router.get('/api/visitors/:visitorId', async function (req, res, next) {
 router.post('/api/visitors', async function (req, res, next) {
   res.type('application/json')
   let todo = req.body;
-  todo['UserId'] = +mobileUserLogin.id;
-  todo['SiteSiteId'] = +mobileUserLogin.siteId;
+  todo['userId'] = +mobileUserLogin.id;
+  todo['siteSiteId'] = +mobileUserLogin.siteId;
   todo['status'] = status[1];
 
   try {
@@ -164,9 +164,9 @@ router.put('/api/visitors/checkout/:id', async function (req, res, next) {
 router.put('/api/visitors/checkin/:id', async function (req, res, next) {
     res.type('application/json')
     let todo = req.body
-    todo['UserId'] = +todo.approve_by;
+    todo['userId'] = +todo.approve_by;
     todo['accepted_by'] = +mobileUserLogin.id;
-    todo['SiteSiteId'] = +mobileUserLogin.siteId;
+    todo['siteSiteId'] = +mobileUserLogin.siteId;
     todo['status'] = status[0];
   
     delete todo._id

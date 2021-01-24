@@ -89,8 +89,8 @@ router.post('/api/clients', async function (req, res, next) {
   try {
     let result = await models.clients.create(todo);
     if (result && result.dataValues) {
-      if(todo.Sites.length) {
-        todo.Sites.forEach(site => {
+      if(todo.sites.length) {
+        todo.sites.forEach(site => {
           site['clientId'] = result.dataValues.id
           setSites(site, result, res);
         });

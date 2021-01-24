@@ -46,7 +46,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         country: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             field: 'country',
             allowNull: false
         },
@@ -60,7 +60,7 @@ module.exports = (sequelize) => {
             field: 'pan_no',
             allowNull: true
         },
-        type: {
+        designation: {
             type: DataTypes.INTEGER,
             field: 'type',
             allowNull: false
@@ -70,6 +70,11 @@ module.exports = (sequelize) => {
             field: 'employee_code',
             allowNull: true,
             unique: true
+        },
+        img: {
+            type: DataTypes.STRING,
+            field: 'img',
+            allowNull: true
         },
         createdAt: {
             type: DataTypes.DATE

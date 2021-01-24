@@ -1,5 +1,5 @@
 const { models } = require('../models');
-const User = models.Users;
+const User = models.users;
 
 checkDuplicateUsernameOrEmail = (req, res, next) => {
   // Username

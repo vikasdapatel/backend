@@ -25,7 +25,7 @@ router.get('/api/building-blocks', async function (req, res, next) {
   try {
     let result = await models.buildingBlocks.findAndCountAll({
       where: {
-        SiteSiteId: +mobileUserLogin.siteId
+        siteSiteId: +mobileUserLogin.siteId
       }
     });
     if (!result) {
@@ -76,7 +76,7 @@ router.get('/api/building-blocks/:siteId', async function (req, res, next) {
 router.post('/api/building-blocks', async function (req, res, next) {
   res.type('application/json')
   let todo = req.body;
-  todo['SiteSiteId'] = +mobileUserLogin.siteId;
+  todo['siteSiteId'] = +mobileUserLogin.siteId;
   todo['flats'] = todo.flats.toString();
 
   try {

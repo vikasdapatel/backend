@@ -20,7 +20,7 @@ router.get('/api/invoice-settings', async function (req, res, next) {
       where: {
         [Op.or]: [
           {
-            UserId : userId
+            userId : userId
           }
         ]
         

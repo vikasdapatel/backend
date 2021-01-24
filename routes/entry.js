@@ -148,9 +148,9 @@ function changeStatus(index, VisitorId) {
 router.put('/api/entry/checkin/:id', async function (req, res, next) {
     res.type('application/json')
     let todo = req.body
-    todo['UserId'] = +todo.approve_by;
+    todo['userId'] = +todo.approve_by;
     todo['accepted_by'] = +mobileUserLogin.id;
-    todo['SiteSiteId'] = +mobileUserLogin.siteId;
+    todo['siteSiteId'] = +mobileUserLogin.siteId;
     todo['status'] = status[0];
   
     delete todo._id

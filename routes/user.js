@@ -47,9 +47,9 @@ router.get('/api/user', async function (req, res, next) {
           {
             flat : (req.query.flat)
           },{
-            BuildingBlockId :(req.query.block)
+            buildingBlockId :(req.query.block)
           },{
-            SiteSiteId : +mobileUserLogin.siteId
+            siteSiteId : +mobileUserLogin.siteId
           }
         ]
         
