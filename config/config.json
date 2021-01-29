@@ -1,21 +1,24 @@
 {
     "production": {
-        "use_env_variable": "PROD_DATABASE_URL"
+        "use_env_variable": "DATABASE_URL"
     },
     "development": {
-      "use_env_variable": "DEV_DATABASE_URL"
+      "use_env_variable": "DATABASE_URL"
     },
     "test": {
-      "username": "root",
-      "password": "",
+      "username": "postgres",
+      "password": "1234",
       "database": "jinisha-db",
       "host": "localhost",
-      "port": 3000,
+      "port": 3300,
       "dialect": "postgres",
         "pool": {
             "max": 5,
             "min": 0,
             "idle": 10000
         }
-    }
+        },
+      "dialectOptions": {
+        "ssl": { "rejectUnauthorized": false }
+      }
   }

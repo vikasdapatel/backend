@@ -8,7 +8,7 @@ const config = require(`${__dirname}/../config/config.json`)[env];
 global.appRoot = path.resolve(__dirname);
 
 let sequelize;
-if (config.use_env_variable) {
+if (env == 'production' || env == 'development') {
   // From the environment, extract the key with the name provided in the config as use_env_variable
   // and use that to establish a connection to our database.
   sequelize = new Sequelize(process.env[config.use_env_variable],
