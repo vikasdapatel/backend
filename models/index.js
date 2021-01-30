@@ -53,7 +53,7 @@ const modelDefiners = [
 
 // Sync all models that are not 
 // already in the database 
-//sequelize.sync() 
+sequelize.sync() 
 
 // We define all models according to their files.
 for (const modelDefiner of modelDefiners) {
